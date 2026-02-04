@@ -1,10 +1,8 @@
-import { SiGithub } from "@icons-pack/react-simple-icons"
 import { createFileRoute, Link, redirect } from "@tanstack/react-router"
 import { Globe } from "lucide-react"
 import z from "zod"
 import { AuthForm } from "@/components/auth/form"
 import { Logo } from "@/components/logo"
-import { Button } from "@/components/ui/button"
 import { getSession } from "@/lib/auth/server"
 
 export const Route = createFileRoute("/auth/$view")({
@@ -39,23 +37,6 @@ function AuthView() {
             </h1>
             <p className="text-sm">Kelola stok dengan mudah.</p>
           </div>
-
-          <div className="absolute bottom-10 flex w-full justify-between px-10">
-            <div className="flex-1 space-y-1 text-primary-foreground">
-              <h2 className="font-medium">Siap diluncurkan?</h2>
-              <p className="text-sm">
-                Klon repo, pasang dependensi, dan dashboard Anda langsung online
-                dalam hitungan menit.
-              </p>
-            </div>
-            <div className="flex-1 space-y-1 text-primary-foreground">
-              <h2 className="font-medium">Butuh bantuan?</h2>
-              <p className="text-sm">
-                Lihat dokumentasi atau buka issue di GitHub, dukungan komunitas
-                hanya sejauh klik.
-              </p>
-            </div>
-          </div>
         </div>
         <div className="relative order-2 flex h-full">
           <div className="mx-auto flex w-full flex-col justify-center space-y-8 sm:w-87.5">
@@ -70,16 +51,6 @@ function AuthView() {
               </p>
             </div>
             <div className="space-y-4">
-              <Button className="w-full" type="button" variant="secondary">
-                <SiGithub className="size-4" />
-                Lanjutkan dengan Github
-              </Button>
-              <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-border after:border-t">
-                <span className="relative z-10 bg-background px-2">
-                  Atau lanjutkan dengan
-                </span>
-              </div>
-
               <AuthForm isSignUp={isSignUp} />
 
               <div className="mt-5 space-y-5">

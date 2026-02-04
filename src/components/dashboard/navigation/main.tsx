@@ -24,7 +24,7 @@ interface NavMainProps {
 
 const IsComingSoon = () => (
   <span className="ml-auto rounded-md bg-muted px-2 py-1 font-medium text-[10px]">
-    Soon
+    Segera
   </span>
 )
 

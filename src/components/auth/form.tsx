@@ -102,7 +102,7 @@ export function AuthForm({ isSignUp }: AuthFormProps) {
               {(field) => (
                 <field.Field>
                   <field.Fieldset className="w-full">
-                    <field.FieldLabel htmlFor={"name"}>Name</field.FieldLabel>
+                    <field.FieldLabel htmlFor={"name"}>Nama</field.FieldLabel>
                     <field.Input
                       name={"name"}
                       placeholder="John Doe"
@@ -136,7 +136,7 @@ export function AuthForm({ isSignUp }: AuthFormProps) {
               <field.Field>
                 <field.Fieldset className="w-full">
                   <field.FieldLabel htmlFor={"password"}>
-                    Password
+                    Kata Sandi
                   </field.FieldLabel>
                   <field.InputGroup>
                     <field.InputGroupInput
@@ -152,7 +152,9 @@ export function AuthForm({ isSignUp }: AuthFormProps) {
                           render={
                             <Button
                               aria-label={
-                                showPassword ? "Hide password" : "Show password"
+                                showPassword
+                                  ? "Sembunyikan kata sandi"
+                                  : "Tampilkan kata sandi"
                               }
                               onClick={() => setShowPassword(!showPassword)}
                               size="icon-xs"
@@ -163,7 +165,9 @@ export function AuthForm({ isSignUp }: AuthFormProps) {
                           {showPassword ? <EyeOffIcon /> : <EyeIcon />}
                         </TooltipTrigger>
                         <TooltipPopup>
-                          {showPassword ? "Hide password" : "Show password"}
+                          {showPassword
+                            ? "Sembunyikan kata sandi"
+                            : "Tampilkan kata sandi"}
                         </TooltipPopup>
                       </Tooltip>
                     </field.InputGroupAddon>
@@ -176,7 +180,7 @@ export function AuthForm({ isSignUp }: AuthFormProps) {
 
           <form.SubmitButton
             className="w-full"
-            label={isSignUp ? "Create account" : "Continue with email"}
+            label={isSignUp ? "Buat akun" : "Lanjutkan dengan email"}
           />
         </form.Form>
       </form.AppForm>

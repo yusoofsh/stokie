@@ -29,7 +29,7 @@ export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
             router.invalidate()
           }}
         >
-          Try Again
+          Coba Lagi
         </Button>
         {isRoot ? (
           <Link
@@ -38,7 +38,7 @@ export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
             }
             to="/"
           >
-            Home
+            Beranda
           </Link>
         ) : (
           <Link

@@ -21,11 +21,11 @@ export function useAdmin() {
     }: Parameters<typeof auth.admin.createUser>[0]) =>
       auth.admin.createUser({ email, password, name, role }),
     onSuccess: () => {
-      toast.add({ description: "User created successfully", type: "success" })
+      toast.add({ description: "Pengguna berhasil dibuat", type: "success" })
     },
     onError: (error) => {
       toast.add({
-        description: error.message || "Failed to create user",
+        description: error.message || "Gagal membuat pengguna",
         type: "error",
       })
     },
@@ -41,11 +41,11 @@ export function useAdmin() {
       setChangingRoleUserId(userId)
     },
     onSuccess: () => {
-      toast.add({ description: "User role updated", type: "success" })
+      toast.add({ description: "Peran pengguna diperbarui", type: "success" })
     },
     onError: (error) => {
       toast.add({
-        description: error.message || "Failed to update role",
+        description: error.message || "Gagal memperbarui peran",
         type: "error",
       })
     },
@@ -67,11 +67,11 @@ export function useAdmin() {
         banExpiresIn,
       }),
     onSuccess: () => {
-      toast.add({ description: "User banned successfully", type: "success" })
+      toast.add({ description: "Pengguna berhasil diblokir", type: "success" })
     },
     onError: (error) => {
       toast.add({
-        description: error.message || "Failed to ban user",
+        description: error.message || "Gagal memblokir pengguna",
         type: "error",
       })
     },
@@ -83,11 +83,11 @@ export function useAdmin() {
   const { mutate: unbanUser, isPending: isUnbanning } = useMutation({
     mutationFn: (userId: string) => auth.admin.unbanUser({ userId }),
     onSuccess: () => {
-      toast.add({ description: "User unbanned successfully", type: "success" })
+      toast.add({ description: "Blokir pengguna dibuka", type: "success" })
     },
     onError: (error) => {
       toast.add({
-        description: error.message || "Failed to unban user",
+        description: error.message || "Gagal membuka blokir pengguna",
         type: "error",
       })
     },
@@ -100,11 +100,11 @@ export function useAdmin() {
     {
       mutationFn: (userId: string) => auth.admin.revokeUserSessions({ userId }),
       onSuccess: () => {
-        toast.add({ description: "Sessions revoked for user", type: "success" })
+        toast.add({ description: "Sesi pengguna dicabut", type: "success" })
       },
       onError: (error) => {
         toast.add({
-          description: error.message || "Failed to revoke sessions",
+          description: error.message || "Gagal mencabut sesi",
           type: "error",
         })
       },
@@ -115,14 +115,14 @@ export function useAdmin() {
     mutationFn: (userId: string) => auth.admin.impersonateUser({ userId }),
     onSuccess: () => {
       toast.add({
-        description: "Impersonated user successfully",
+        description: "Menyamar sebagai pengguna berhasil",
         type: "success",
       })
       router.navigate({ to: "/dashboard" })
     },
     onError: (error) => {
       toast.add({
-        description: error.message || "Failed to impersonate user",
+        description: error.message || "Gagal menyamar sebagai pengguna",
         type: "error",
       })
     },
@@ -132,12 +132,12 @@ export function useAdmin() {
     useMutation({
       mutationFn: () => auth.admin.stopImpersonating(),
       onSuccess: () => {
-        toast.add({ description: "Stopped impersonation", type: "success" })
+        toast.add({ description: "Berhenti menyamar", type: "success" })
         router.navigate({ to: "/dashboard/admin" })
       },
       onError: (error) => {
         toast.add({
-          description: error.message || "Failed to stop impersonation",
+          description: error.message || "Gagal berhenti menyamar",
           type: "error",
         })
       },

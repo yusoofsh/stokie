@@ -92,15 +92,15 @@ export function NavUser() {
             <MenuGroup>
               <MenuItem>
                 <CircleUser className="size-4" />
-                <span>Account</span>
+                <span>Akun</span>
               </MenuItem>
               <MenuItem>
                 <CreditCard className="size-4" />
-                <span>Billing</span>
+                <span>Penagihan</span>
               </MenuItem>
               <MenuItem>
                 <MessageSquareDot className="size-4" />
-                <span>Notifications</span>
+                <span>Notifikasi</span>
               </MenuItem>
             </MenuGroup>
             <MenuSeparator />
@@ -116,7 +116,7 @@ export function NavUser() {
               }
             >
               <LogOut className="size-4" />
-              <span>Log out</span>
+              <span>Keluar</span>
             </MenuItem>
           </MenuPopup>
         </Menu>
