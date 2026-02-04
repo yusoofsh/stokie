@@ -108,11 +108,11 @@ function AuditLogTable({ logs }: { logs: AuditLog[] }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Timestamp</TableHead>
-            <TableHead>User</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead>Waktu</TableHead>
+            <TableHead>Pengguna</TableHead>
+            <TableHead>Tindakan</TableHead>
             <TableHead>Target</TableHead>
-            <TableHead>Changes</TableHead>
+            <TableHead>Perubahan</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -130,7 +130,7 @@ function AuditLogTable({ logs }: { logs: AuditLog[] }) {
                     </div>
                   </div>
                 ) : (
-                  <span className="text-muted-foreground">System</span>
+                  <span className="text-muted-foreground">Sistem</span>
                 )}
               </TableCell>
               <TableCell>
@@ -156,12 +156,12 @@ function AuditLogTable({ logs }: { logs: AuditLog[] }) {
                 {log.before || log.after ? (
                   <details className="cursor-pointer">
                     <summary className="text-muted-foreground text-xs">
-                      View changes
+                      Lihat perubahan
                     </summary>
                     <div className="mt-2 space-y-2">
                       {log.before && (
                         <div>
-                          <div className="font-medium text-xs">Before:</div>
+                          <div className="font-medium text-xs">Sebelum:</div>
                           <pre className="max-h-24 max-w-xs overflow-auto rounded bg-muted p-2 text-xs">
                             {formatJson(log.before) ?? ""}
                           </pre>
@@ -169,7 +169,7 @@ function AuditLogTable({ logs }: { logs: AuditLog[] }) {
                       )}
                       {log.after && (
                         <div>
-                          <div className="font-medium text-xs">After:</div>
+                          <div className="font-medium text-xs">Sesudah:</div>
                           <pre className="max-h-24 max-w-xs overflow-auto rounded bg-muted p-2 text-xs">
                             {formatJson(log.after) ?? ""}
                           </pre>
@@ -270,15 +270,15 @@ function AdminAuditPage() {
     if (isLoading) {
       return (
         <div className="py-8 text-center text-muted-foreground">
-          Loading audit logs...
+          Memuat log audit...
         </div>
       )
     }
     if (filteredLogs.length === 0) {
       const message =
         logs.length === 0
-          ? "No audit logs recorded yet"
-          : "No logs match your filters"
+          ? "Belum ada log audit yang dicatat"
+          : "Tidak ada log yang sesuai dengan filter Anda"
       return (
         <div className="py-8 text-center text-muted-foreground">{message}</div>
       )
@@ -290,9 +290,9 @@ function AdminAuditPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-bold text-3xl">Audit Logs</h2>
+          <h2 className="font-bold text-3xl">Log Audit</h2>
           <p className="text-muted-foreground">
-            View system activity and changes
+            Lihat aktivitas dan perubahan sistem
           </p>
         </div>
         <div className="flex gap-2">
@@ -305,7 +305,7 @@ function AdminAuditPage() {
             <RefreshCw
               className={`mr-2 h-4 w-4 ${isRefetching ? "animate-spin" : ""}`}
             />
-            Refresh
+            Segarkan
           </Button>
           <PermissionGate permissions={{ audit: ["export"] }}>
             <Button
@@ -315,7 +315,7 @@ function AdminAuditPage() {
               variant="outline"
             >
               <Download className="mr-2 h-4 w-4" />
-              Export CSV
+              Ekspor CSV
             </Button>
           </PermissionGate>
         </div>
@@ -323,9 +323,9 @@ function AdminAuditPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Filters</CardTitle>
+          <CardTitle>Filter</CardTitle>
           <CardDescription>
-            Filter audit logs by action, target type, or search
+            Filter log audit berdasarkan tindakan, tipe target, atau pencarian
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -343,7 +343,7 @@ function AdminAuditPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Actions</SelectItem>
+                  <SelectItem value="all">Semua Tindakan</SelectItem>
                   {uniqueActions.map((action) => (
                     <SelectItem key={action} value={action}>
                       {action}
@@ -365,7 +365,7 @@ function AdminAuditPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Targets</SelectItem>
+                  <SelectItem value="all">Semua Target</SelectItem>
                   {uniqueTargetTypes.map((type) => (
                     <SelectItem key={type} value={type}>
                       {type}
@@ -378,7 +378,7 @@ function AdminAuditPage() {
               <Input
                 className="max-w-sm"
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by user, target, or action..."
+                placeholder="Cari berdasarkan pengguna, target, atau tindakan..."
                 value={searchQuery}
               />
             </div>
@@ -388,7 +388,7 @@ function AdminAuditPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity ({filteredLogs.length})</CardTitle>
+          <CardTitle>Aktivitas Terbaru ({filteredLogs.length})</CardTitle>
         </CardHeader>
         <CardContent>{renderContent()}</CardContent>
       </Card>

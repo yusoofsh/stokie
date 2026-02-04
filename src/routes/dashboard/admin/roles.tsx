@@ -63,11 +63,11 @@ const ORG_ROLE_PERMISSIONS: Record<string, Record<string, string[]>> = {
 }
 
 const ROLE_DESCRIPTIONS: Record<string, string> = {
-  user: "Basic user access with read-only permissions",
-  editor: "Content management with limited write access",
-  admin: "Full system access with all permissions",
-  owner: "Organization owner with full org control",
-  member: "Organization member with basic access",
+  user: "Akses pengguna dasar dengan perizinan hanya baca",
+  editor: "Manajemen konten dengan akses tulis terbatas",
+  admin: "Akses sistem penuh dengan semua perizinan",
+  owner: "Pemilik organisasi dengan kontrol organisasi penuh",
+  member: "Anggota organisasi dengan akses dasar",
 }
 
 function hasPermission(
@@ -93,7 +93,7 @@ function RolePermissionMatrix({
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>
-          Permission matrix showing capabilities for each role
+          Matriks perizinan menunjukkan kemampuan untuk setiap peran
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -102,10 +102,10 @@ function RolePermissionMatrix({
             <TableHeader>
               <TableRow>
                 <TableHead className="sticky left-0 bg-background">
-                  Resource
+                  Sumber Daya
                 </TableHead>
                 <TableHead className="sticky left-[100px] bg-background">
-                  Action
+                  Tindakan
                 </TableHead>
                 {roleNames.map((role) => (
                   <TableHead className="text-center capitalize" key={role}>
@@ -168,10 +168,10 @@ function RoleCard({
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg capitalize">{name}</CardTitle>
-          <Badge variant="secondary">{permissionCount} permissions</Badge>
+          <Badge variant="secondary">{permissionCount} perizinan</Badge>
         </div>
         <CardDescription>
-          {ROLE_DESCRIPTIONS[name] || "Custom role"}
+          {ROLE_DESCRIPTIONS[name] || "Peran khusus"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -197,17 +197,17 @@ function AdminRolesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-bold text-3xl">Role Management</h2>
+        <h2 className="font-bold text-3xl">Manajemen Peran</h2>
         <p className="text-muted-foreground">
-          View and manage system and organization roles
+          Lihat dan kelola peran sistem dan organisasi
         </p>
       </div>
 
       <Tabs defaultValue="system">
         <TabsList>
-          <TabsTrigger value="system">System Roles</TabsTrigger>
-          <TabsTrigger value="organization">Organization Roles</TabsTrigger>
-          <TabsTrigger value="matrix">Permission Matrix</TabsTrigger>
+          <TabsTrigger value="system">Peran Sistem</TabsTrigger>
+          <TabsTrigger value="organization">Peran Organisasi</TabsTrigger>
+          <TabsTrigger value="matrix">Matriks Perizinan</TabsTrigger>
         </TabsList>
 
         <TabsContent className="mt-4 space-y-4" value="system">
@@ -231,11 +231,11 @@ function AdminRolesPage() {
         <TabsContent className="mt-4 space-y-6" value="matrix">
           <RolePermissionMatrix
             rolePermissions={SYSTEM_ROLE_PERMISSIONS}
-            title="System Roles Matrix"
+            title="Matriks Peran Sistem"
           />
           <RolePermissionMatrix
             rolePermissions={ORG_ROLE_PERMISSIONS}
-            title="Organization Roles Matrix"
+            title="Matriks Peran Organisasi"
           />
         </TabsContent>
       </Tabs>

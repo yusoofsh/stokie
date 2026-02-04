@@ -46,7 +46,7 @@ function DashboardLayout() {
                 className="mx-2 data-[orientation=vertical]:h-4"
                 orientation="vertical"
               />
-              <div className="font-medium text-sm">Dashboard</div>
+              <div className="font-medium text-sm">Dasbor</div>
             </div>
           </div>
         </header>

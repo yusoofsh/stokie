@@ -42,17 +42,17 @@ function AuthView() {
 
           <div className="absolute bottom-10 flex w-full justify-between px-10">
             <div className="flex-1 space-y-1 text-primary-foreground">
-              <h2 className="font-medium">Ready to launch?</h2>
+              <h2 className="font-medium">Siap diluncurkan?</h2>
               <p className="text-sm">
-                Clone the repo, install dependencies, and your dashboard is live
-                in minutes.
+                Klon repo, pasang dependensi, dan dashboard Anda langsung online
+                dalam hitungan menit.
               </p>
             </div>
             <div className="flex-1 space-y-1 text-primary-foreground">
-              <h2 className="font-medium">Need help?</h2>
+              <h2 className="font-medium">Butuh bantuan?</h2>
               <p className="text-sm">
-                Check out the docs or open an issue on GitHub, community support
-                is just a click away.
+                Lihat dokumentasi atau buka issue di GitHub, dukungan komunitas
+                hanya sejauh klik.
               </p>
             </div>
           </div>
@@ -61,22 +61,22 @@ function AuthView() {
           <div className="mx-auto flex w-full flex-col justify-center space-y-8 sm:w-87.5">
             <div className="space-y-2 text-center">
               <h1 className="font-medium text-3xl">
-                {isSignUp ? "Create your account" : "Sign in to your account"}
+                {isSignUp ? "Buat akun Anda" : "Masuk ke akun Anda"}
               </h1>
               <p className="text-muted-foreground text-sm">
                 {isSignUp
-                  ? "Please enter your details to sign up."
-                  : "Please enter your details to sign in."}
+                  ? "Silakan masukkan detail Anda untuk mendaftar."
+                  : "Silakan masukkan detail Anda untuk masuk."}
               </p>
             </div>
             <div className="space-y-4">
               <Button className="w-full" type="button" variant="secondary">
                 <SiGithub className="size-4" />
-                Continue with Github
+                Lanjutkan dengan Github
               </Button>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-border after:border-t">
                 <span className="relative z-10 bg-background px-2">
-                  Or continue with
+                  Atau lanjutkan dengan
                 </span>
               </div>
 
@@ -88,30 +88,30 @@ function AuthView() {
                     className="block text-center text-muted-foreground text-sm underline"
                     to="/"
                   >
-                    Forgot your password?
+                    Lupa kata sandi Anda?
                   </Link>
                 )}
                 <p className="text-center text-sm">
                   {isSignUp ? (
                     <>
-                      Already have an account?
+                      Sudah punya akun?
                       <Link
                         className="ml-1 text-muted-foreground underline"
                         params={{ view: "sign-in" }}
                         to="/auth/$view"
                       >
-                        Sign in
+                        Masuk
                       </Link>
                     </>
                   ) : (
                     <>
-                      Don&apos;t have an account?
+                      Belum punya akun?
                       <Link
                         className="ml-1 text-muted-foreground underline"
                         params={{ view: "sign-up" }}
                         to="/auth/$view"
                       >
-                        Create account
+                        Buat akun
                       </Link>
                     </>
                   )}
@@ -127,7 +127,7 @@ function AuthView() {
             </div>
             <div className="flex items-center gap-1 text-sm">
               <Globe className="size-4 text-muted-foreground" />
-              ENG
+              IND
             </div>
           </div>
         </div>

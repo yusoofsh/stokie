@@ -133,7 +133,8 @@ function AdminUsersPage() {
   if (data.users.length === 0) {
     return (
       <div className="container mx-auto py-8 text-center text-muted-foreground">
-        No users found. Use the "Create User" button to add new users.
+        Tidak ada pengguna. Gunakan tombol "Buat Pengguna" untuk menambah
+        pengguna baru.
       </div>
     )
   }
@@ -144,27 +145,29 @@ function AdminUsersPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="font-bold text-3xl">User Management</h2>
-          <p className="text-muted-foreground">View and manage system users</p>
+          <h2 className="font-bold text-3xl">Manajemen Pengguna</h2>
+          <p className="text-muted-foreground">
+            Lihat dan kelola pengguna sistem
+          </p>
         </div>
         <Dialog onOpenChange={setCreateDialogOpen} open={createDialogOpen}>
           <DialogTrigger>
             <Button>
               <UserPlus className="mr-2 h-4 w-4" />
-              Create User
+              Buat Pengguna
             </Button>
           </DialogTrigger>
           <DialogContent>
             <form onSubmit={handleCreateUser}>
               <DialogHeader>
-                <DialogTitle>Create New User</DialogTitle>
+                <DialogTitle>Buat Pengguna Baru</DialogTitle>
                 <DialogDescription>
-                  Add a new user to the system with specified role
+                  Tambahkan pengguna baru ke sistem dengan peran tertentu
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">Nama</Label>
                   <Input id="name" name="name" required />
                 </div>
                 <div className="grid gap-2">
@@ -172,7 +175,7 @@ function AdminUsersPage() {
                   <Input id="email" name="email" required type="email" />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">Kata Sandi</Label>
                   <Input
                     id="password"
                     minLength={8}
@@ -182,13 +185,13 @@ function AdminUsersPage() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="role">Role</Label>
+                  <Label htmlFor="role">Peran</Label>
                   <Select defaultValue="user" name="role">
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="user">User</SelectItem>
+                      <SelectItem value="user">Pengguna</SelectItem>
                       <SelectItem value="editor">Editor</SelectItem>
                       <SelectItem value="admin">Admin</SelectItem>
                     </SelectContent>
@@ -197,7 +200,7 @@ function AdminUsersPage() {
               </div>
               <DialogFooter>
                 <Button disabled={isCreating} type="submit">
-                  {isCreating ? "Creating..." : "Create User"}
+                  {isCreating ? "Membuat..." : "Buat Pengguna"}
                 </Button>
               </DialogFooter>
             </form>
@@ -207,23 +210,23 @@ function AdminUsersPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>All Users ({users.length})</CardTitle>
+          <CardTitle>Semua Pengguna ({users.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {users.length === 0 ? (
             <div className="py-8 text-center text-muted-foreground">
-              No users found
+              Tidak ada pengguna
             </div>
           ) : (
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Name</TableHead>
+                  <TableHead>Nama</TableHead>
                   <TableHead>Email</TableHead>
-                  <TableHead>Role</TableHead>
+                  <TableHead>Peran</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  <TableHead>Dibuat</TableHead>
+                  <TableHead className="text-right">Tindakan</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -252,29 +255,29 @@ function AdminUsersPage() {
         <DialogContent>
           <form onSubmit={handleBanUser}>
             <DialogHeader>
-              <DialogTitle>Ban User</DialogTitle>
+              <DialogTitle>Blokir Pengguna</DialogTitle>
               <DialogDescription>
-                Prevent this user from accessing the system
+                Cegah pengguna ini dari mengakses sistem
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
-                <Label htmlFor="banReason">Reason (optional)</Label>
+                <Label htmlFor="banReason">Alasan (opsional)</Label>
                 <Textarea
                   id="banReason"
                   name="banReason"
-                  placeholder="Enter reason for ban..."
+                  placeholder="Masukkan alasan pemblokiran..."
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="banDays">
-                  Ban Duration (days, leave empty for permanent)
+                  Durasi Blokir (hari, kosongkan untuk permanen)
                 </Label>
                 <Input
                   id="banDays"
                   min="1"
                   name="banDays"
-                  placeholder="Leave empty for permanent ban"
+                  placeholder="Kosongkan untuk pemblokiran permanen"
                   type="number"
                 />
               </div>
@@ -285,10 +288,10 @@ function AdminUsersPage() {
                 type="button"
                 variant="outline"
               >
-                Cancel
+                Batal
               </Button>
               <Button disabled={isBanning} type="submit" variant="destructive">
-                {isBanning ? "Banning..." : "Ban User"}
+                {isBanning ? "Memblokir..." : "Blokir Pengguna"}
               </Button>
             </DialogFooter>
           </form>
@@ -339,20 +342,22 @@ function UserRow({
       <TableCell>{user.email}</TableCell>
       <TableCell>
         <Badge variant={currentRole === "admin" ? "default" : "secondary"}>
-          {currentRole || "user"}
+          {currentRole || "pengguna"}
         </Badge>
       </TableCell>
       <TableCell>
         {user.banned ? (
           <Badge variant="destructive">
             <Ban className="mr-1 h-3 w-3" />
-            Banned
+            Diblokir
           </Badge>
         ) : (
-          <Badge variant="outline">Active</Badge>
+          <Badge variant="outline">Aktif</Badge>
         )}
       </TableCell>
-      <TableCell>{new Date(user.createdAt).toLocaleDateString()}</TableCell>
+      <TableCell>
+        {new Date(user.createdAt).toLocaleDateString("id-ID")}
+      </TableCell>
       <TableCell className="space-x-2 text-right">
         <div className="flex items-center justify-end gap-2">
           <Select
@@ -367,7 +372,7 @@ function UserRow({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="user">User</SelectItem>
+              <SelectItem value="user">Pengguna</SelectItem>
               <SelectItem value="editor">Editor</SelectItem>
               <SelectItem value="admin">Admin</SelectItem>
             </SelectContent>
@@ -382,8 +387,8 @@ function UserRow({
             >
               <UserCog className="mr-1 h-4 w-4" />
               {isRoleChanging && changingRoleUserId === user.id
-                ? "Updating..."
-                : "Update"}
+                ? "Memperbarui..."
+                : "Perbarui"}
             </Button>
           )}
 
@@ -395,7 +400,7 @@ function UserRow({
               variant="outline"
             >
               <Shield className="mr-1 h-4 w-4" />
-              Unban
+              Buka Blokir
             </Button>
           ) : (
             <Button

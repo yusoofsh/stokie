@@ -15,10 +15,10 @@ function App() {
             render={<Link to="/" />}
             variant="secondary"
           >
-            Just released v1.0.0 <ArrowUpRight className="ml-1 size-4" />
+            Baru rilis v1.0.0 <ArrowUpRight className="ml-1 size-4" />
           </Badge>
           <h1 className="mt-6 max-w-[17ch] font-semibold text-4xl leading-[1.2] tracking-[-0.035em] md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
-            Welcome to {import.meta.env.VITE_APP_TITLE || "Stokie"}
+            Selamat datang di {import.meta.env.VITE_APP_TITLE || "Stokie"}
           </h1>
           <p className="mt-6 max-w-[60ch] text-foreground/80 text-lg">
             Kelola stok barang dengan mudah. Catat barang masuk, keluar,
@@ -30,14 +30,14 @@ function App() {
               render={<Link to="/dashboard" />}
               size="lg"
             >
-              Get Started <ArrowUpRight className="h-5 w-5" />
+              Mulai Sekarang <ArrowUpRight className="h-5 w-5" />
             </Button>
             <Button
               className="rounded-full text-base shadow-none"
               size="lg"
               variant="outline"
             >
-              <CirclePlay className="h-5 w-5" /> Watch Demo
+              <CirclePlay className="h-5 w-5" /> Tonton Demo
             </Button>
           </div>
         </div>

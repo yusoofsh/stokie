@@ -31,17 +31,17 @@ export const Route = createFileRoute("/dashboard/admin/permissions")({
 type Resource = keyof typeof statement
 
 const RESOURCE_DESCRIPTIONS: Record<Resource, string> = {
-  user: "User accounts and profiles",
-  audit: "System audit logs and activity tracking",
-  role: "Role definitions and assignments",
-  organization: "Organization management",
-  member: "Organization membership",
-  ac: "Access control configuration",
-  product: "Product catalog and inventory items",
-  stock: "Stock levels and adjustments",
-  sale: "Sales transactions",
-  payment: "Payment processing",
-  report: "Reports and analytics",
+  user: "Akun pengguna dan profil",
+  audit: "Log audit sistem dan pelacakan aktivitas",
+  role: "Definisi peran dan penetapan",
+  organization: "Manajemen organisasi",
+  member: "Keanggotaan organisasi",
+  ac: "Konfigurasi kontrol akses",
+  product: "Katalog produk dan item inventori",
+  stock: "Tingkat stok dan penyesuaian",
+  sale: "Transaksi penjualan",
+  payment: "Pemrosesan pembayaran",
+  report: "Laporan dan analitik",
 }
 
 function ResourceCard({
@@ -120,23 +120,23 @@ function UserPermissionLookup() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>User Permission Lookup</CardTitle>
+        <CardTitle>Pencarian Perizinan Pengguna</CardTitle>
         <CardDescription>
-          Check what permissions a specific user has
+          Periksa perizinan apa yang dimiliki pengguna tertentu
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex gap-2">
           <div className="flex-1">
             <Label className="sr-only" htmlFor="userId">
-              User ID
+              ID Pengguna
             </Label>
             <Input
               id="userId"
               list="user-suggestions"
               onChange={(e) => setUserId(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              placeholder="Enter user ID or select from list..."
+              placeholder="Masukkan ID pengguna atau pilih dari daftar..."
               value={userId}
             />
             <datalist id="user-suggestions">
@@ -152,7 +152,7 @@ function UserPermissionLookup() {
             onClick={handleSearch}
           >
             <Search className="mr-2 h-4 w-4" />
-            Check
+            Periksa
           </Button>
         </div>
 
@@ -163,14 +163,14 @@ function UserPermissionLookup() {
               {selectedUser.email}
             </div>
             <Badge className="mt-1 capitalize" variant="secondary">
-              {selectedUser.role || "user"}
+              {selectedUser.role || "pengguna"}
             </Badge>
           </div>
         )}
 
         {isCheckingPermissions && (
           <div className="py-4 text-center text-muted-foreground">
-            Checking permissions...
+            Memeriksa perizinan...
           </div>
         )}
 
@@ -179,9 +179,9 @@ function UserPermissionLookup() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Resource</TableHead>
-                  <TableHead>Action</TableHead>
-                  <TableHead className="text-center">Allowed</TableHead>
+                  <TableHead>Sumber Daya</TableHead>
+                  <TableHead>Tindakan</TableHead>
+                  <TableHead className="text-center">Diizinkan</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -245,9 +245,9 @@ function RoleQuickCheck() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Role Quick Reference</CardTitle>
+        <CardTitle>Referensi Cepat Peran</CardTitle>
         <CardDescription>
-          Permission summary for each system role
+          Ringkasan perizinan untuk setiap peran sistem
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -297,9 +297,9 @@ function AdminPermissionsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-bold text-3xl">Permission Management</h2>
+        <h2 className="font-bold text-3xl">Manajemen Perizinan</h2>
         <p className="text-muted-foreground">
-          View system resources and check user permissions
+          Lihat sumber daya sistem dan periksa perizinan pengguna
         </p>
       </div>
 

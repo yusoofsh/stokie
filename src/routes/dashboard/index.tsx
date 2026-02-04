@@ -21,37 +21,37 @@ function DashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
+          <CardTitle>Aktivitas Terbaru</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>User</TableHead>
-                <TableHead>Action</TableHead>
-                <TableHead>Date</TableHead>
+                <TableHead>Pengguna</TableHead>
+                <TableHead>Tindakan</TableHead>
+                <TableHead>Tanggal</TableHead>
                 <TableHead className="text-right">Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <TableRow>
                 <TableCell className="font-medium">John Doe</TableCell>
-                <TableCell>Logged in</TableCell>
+                <TableCell>Masuk</TableCell>
                 <TableCell>2024-03-20</TableCell>
-                <TableCell className="text-right">Success</TableCell>
+                <TableCell className="text-right">Berhasil</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-medium">Jane Smith</TableCell>
-                <TableCell>Updated profile</TableCell>
+                <TableCell>Perbarui profil</TableCell>
                 <TableCell>2024-03-19</TableCell>
-                <TableCell className="text-right">Success</TableCell>
+                <TableCell className="text-right">Berhasil</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-medium">Bob Johnson</TableCell>
-                <TableCell>Failed sign in</TableCell>
+                <TableCell>Gagal masuk</TableCell>
                 <TableCell>2024-03-18</TableCell>
                 <TableCell className="text-right text-destructive-foreground">
-                  Failed
+                  Gagal
                 </TableCell>
               </TableRow>
             </TableBody>

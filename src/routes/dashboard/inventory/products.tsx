@@ -207,14 +207,14 @@ function ProductsPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="unit">Unit</Label>
+                    <Label htmlFor="unit">Satuan</Label>
                     <Select
                       defaultValue={editingProduct?.unit}
                       name="unit"
                       required
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Pilih unit" />
+                        <SelectValue placeholder="Pilih satuan" />
                       </SelectTrigger>
                       <SelectContent>
                         {productUnits.map((unit) => (
@@ -232,7 +232,7 @@ function ProductsPage() {
                     defaultValue={editingProduct?.name}
                     id="name"
                     name="name"
-                    placeholder="Nama produk"
+                    placeholder="Masukkan nama produk"
                     required
                   />
                 </div>
@@ -242,7 +242,7 @@ function ProductsPage() {
                     defaultValue={editingProduct?.category ?? undefined}
                     id="category"
                     name="category"
-                    placeholder="Kategori produk"
+                    placeholder="Masukkan kategori produk"
                   />
                 </div>
                 <div className="space-y-2">
@@ -251,7 +251,7 @@ function ProductsPage() {
                     defaultValue={editingProduct?.description ?? undefined}
                     id="description"
                     name="description"
-                    placeholder="Deskripsi produk (opsional)"
+                    placeholder="Masukkan deskripsi produk (opsional)"
                     rows={2}
                   />
                 </div>
@@ -267,7 +267,7 @@ function ProductsPage() {
                       id="basePrice"
                       min="0"
                       name="basePrice"
-                      placeholder="10000"
+                      placeholder="0"
                       required
                       step="100"
                       type="number"
@@ -284,7 +284,7 @@ function ProductsPage() {
                       id="sellingPrice"
                       min="0"
                       name="sellingPrice"
-                      placeholder="15000"
+                      placeholder="0"
                       required
                       step="100"
                       type="number"
@@ -297,7 +297,7 @@ function ProductsPage() {
                       id="minStock"
                       min="0"
                       name="minStock"
-                      placeholder="10"
+                      placeholder="0"
                       type="number"
                     />
                   </div>
