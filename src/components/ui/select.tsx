@@ -37,7 +37,11 @@ function SelectTrigger({
   )
 }
 
-function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
+function SelectValue({
+  className,
+  placeholder,
+  ...props
+}: SelectPrimitive.Value.Props & { placeholder?: string }) {
   return (
     <SelectPrimitive.Value
       className={cn(
@@ -46,7 +50,9 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
       )}
       data-slot="select-value"
       {...props}
-    />
+    >
+      {(value) => (value ? String(value) : placeholder)}
+    </SelectPrimitive.Value>
   )
 }
 
