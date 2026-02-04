@@ -111,7 +111,11 @@ const createSale = createServerFn({ method: "POST" })
       })
       .returning()
 
-    // Create sale items and stock transactions
+    if (!sale) {
+      // Create sale items and stock transactions
+      throw new Error("Failed to create sale")
+    }
+
     for (const item of data.items) {
       // Create sale item
       await db.insert(saleItems).values({
@@ -169,11 +173,19 @@ function NewSalePage() {
       queryClient.invalidateQueries({ queryKey: ["sales"] })
       queryClient.invalidateQueries({ queryKey: ["products"] })
       queryClient.invalidateQueries({ queryKey: ["inventory"] })
-      toast.success(`Penjualan ${sale.invoiceNumber} berhasil dibuat`)
-      navigate({ to: "/dashboard/sales/$id", params: { id: sale.id } })
+      if (sale) {
+        toast.add({
+          title: `Penjualan ${sale.invoiceNumber} berhasil dibuat`,
+          type: "success",
+        })
+        navigate({ to: "/dashboard/sales/$id", params: { id: sale.id } })
+      }
     },
     onError: (error) => {
-      toast.error(error.message || "Gagal membuat penjualan")
+      toast.add({
+        title: error.message || "Gagal membuat penjualan",
+        type: "error",
+      })
     },
   })
 
@@ -190,16 +202,20 @@ function NewSalePage() {
 
     if (existingIndex >= 0) {
       const updated = [...cart]
-      const newQty = updated[existingIndex].quantity + quantity
-      if (newQty > selectedProduct.currentStock) {
-        toast.error("Jumlah melebihi stok tersedia")
+      const existingItem = updated[existingIndex]
+      if (!existingItem) {
         return
       }
-      updated[existingIndex].quantity = newQty
+      const newQty = existingItem.quantity + quantity
+      if (newQty > selectedProduct.currentStock) {
+        toast.add({ title: "Jumlah melebihi stok tersedia", type: "error" })
+        return
+      }
+      existingItem.quantity = newQty
       setCart(updated)
     } else {
       if (quantity > selectedProduct.currentStock) {
-        toast.error("Jumlah melebihi stok tersedia")
+        toast.add({ title: "Jumlah melebihi stok tersedia", type: "error" })
         return
       }
       setCart([
@@ -224,12 +240,16 @@ function NewSalePage() {
     if (newQty < 1) {
       return
     }
-    if (newQty > cart[index].availableStock) {
-      toast.error("Jumlah melebihi stok tersedia")
+    const cartItem = cart[index]
+    if (!cartItem || newQty > cartItem.availableStock) {
+      toast.add({ title: "Jumlah melebihi stok tersedia", type: "error" })
       return
     }
     const updated = [...cart]
-    updated[index].quantity = newQty
+    const itemToUpdate = updated[index]
+    if (itemToUpdate) {
+      itemToUpdate.quantity = newQty
+    }
     setCart(updated)
   }
 
@@ -244,7 +264,7 @@ function NewSalePage() {
 
   const handleSubmit = () => {
     if (cart.length === 0) {
-      toast.error("Keranjang kosong")
+      toast.add({ title: "Keranjang kosong", type: "error" })
       return
     }
 
@@ -290,7 +310,7 @@ function NewSalePage() {
             <div className="flex gap-4">
               <div className="flex-1">
                 <Select
-                  onValueChange={setSelectedProductId}
+                  onValueChange={(value) => setSelectedProductId(value ?? "")}
                   value={selectedProductId}
                 >
                   <SelectTrigger>

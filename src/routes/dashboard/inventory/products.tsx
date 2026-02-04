@@ -97,10 +97,10 @@ function ProductsPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] })
       setIsDialogOpen(false)
-      toast.success("Produk berhasil ditambahkan")
+      toast.add({ title: "Produk berhasil ditambahkan", type: "success" })
     },
     onError: () => {
-      toast.error("Gagal menambahkan produk")
+      toast.add({ title: "Gagal menambahkan produk", type: "error" })
     },
   })
 
@@ -109,10 +109,10 @@ function ProductsPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] })
       setEditingProduct(null)
-      toast.success("Produk berhasil diperbarui")
+      toast.add({ title: "Produk berhasil diperbarui", type: "success" })
     },
     onError: () => {
-      toast.error("Gagal memperbarui produk")
+      toast.add({ title: "Gagal memperbarui produk", type: "error" })
     },
   })
 
@@ -120,10 +120,10 @@ function ProductsPage() {
     mutationFn: deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] })
-      toast.success("Produk berhasil dihapus")
+      toast.add({ title: "Produk berhasil dihapus", type: "success" })
     },
     onError: () => {
-      toast.error("Gagal menghapus produk")
+      toast.add({ title: "Gagal menghapus produk", type: "error" })
     },
   })
 
@@ -144,9 +144,9 @@ function ProductsPage() {
     }
 
     if (editingProduct) {
-      updateMutation.mutate({ id: editingProduct.id, ...data })
+      updateMutation.mutate({ data: { id: editingProduct.id, ...data } })
     } else {
-      createMutation.mutate(data)
+      createMutation.mutate({ data })
     }
   }
 
@@ -392,7 +392,7 @@ function ProductsPage() {
                         <Button
                           disabled={deleteMutation.isPending}
                           onClick={() =>
-                            deleteMutation.mutate({ id: product.id })
+                            deleteMutation.mutate({ data: { id: product.id } })
                           }
                           size="sm"
                           variant="ghost"

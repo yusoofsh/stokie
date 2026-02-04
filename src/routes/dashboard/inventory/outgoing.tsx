@@ -153,10 +153,13 @@ function OutgoingPage() {
       queryClient.invalidateQueries({ queryKey: ["inventory"] })
       setIsDialogOpen(false)
       setSelectedProduct("")
-      toast.success("Barang keluar berhasil dicatat")
+      toast.add({ title: "Barang keluar berhasil dicatat", type: "success" })
     },
     onError: (error) => {
-      toast.error(error.message || "Gagal mencatat barang keluar")
+      toast.add({
+        title: error.message || "Gagal mencatat barang keluar",
+        type: "error",
+      })
     },
   })
 
@@ -212,7 +215,7 @@ function OutgoingPage() {
                   <Label htmlFor="productId">Produk</Label>
                   <Select
                     name="productId"
-                    onValueChange={setSelectedProduct}
+                    onValueChange={(value) => setSelectedProduct(value ?? "")}
                     required
                     value={selectedProduct}
                   >

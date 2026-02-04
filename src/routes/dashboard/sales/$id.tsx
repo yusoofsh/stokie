@@ -218,10 +218,13 @@ function SaleDetailPage() {
       setPaymentAmount("")
       setPaymentMethod("")
       setPaymentNotes("")
-      toast.success("Pembayaran berhasil dicatat")
+      toast.add({ title: "Pembayaran berhasil dicatat", type: "success" })
     },
     onError: (error) => {
-      toast.error(error.message || "Gagal mencatat pembayaran")
+      toast.add({
+        title: error.message || "Gagal mencatat pembayaran",
+        type: "error",
+      })
     },
   })
 
@@ -231,17 +234,23 @@ function SaleDetailPage() {
       queryClient.invalidateQueries({ queryKey: ["sales"] })
       queryClient.invalidateQueries({ queryKey: ["products"] })
       queryClient.invalidateQueries({ queryKey: ["inventory"] })
-      toast.success("Penjualan berhasil dibatalkan")
+      toast.add({ title: "Penjualan berhasil dibatalkan", type: "success" })
     },
     onError: (error) => {
-      toast.error(error.message || "Gagal membatalkan penjualan")
+      toast.add({
+        title: error.message || "Gagal membatalkan penjualan",
+        type: "error",
+      })
     },
   })
 
   const handleAddPayment = () => {
     const amount = Number(paymentAmount) * 100 // Convert to cents
     if (amount <= 0) {
-      toast.error("Jumlah pembayaran harus lebih dari 0")
+      toast.add({
+        title: "Jumlah pembayaran harus lebih dari 0",
+        type: "error",
+      })
       return
     }
 
@@ -322,7 +331,7 @@ function SaleDetailPage() {
                   <div className="space-y-2">
                     <Label htmlFor="method">Metode Pembayaran</Label>
                     <Select
-                      onValueChange={setPaymentMethod}
+                      onValueChange={(value) => setPaymentMethod(value ?? "")}
                       value={paymentMethod}
                     >
                       <SelectTrigger>

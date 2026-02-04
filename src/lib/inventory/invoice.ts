@@ -20,7 +20,7 @@ export async function generateInvoiceNumber(): Promise<string> {
 
   let nextNumber = 1
 
-  if (lastInvoice.length > 0) {
+  if (lastInvoice.length > 0 && lastInvoice[0]?.invoiceNumber) {
     // Extract the number part from the last invoice
     const lastNumber = lastInvoice[0].invoiceNumber.replace(prefix, "")
     nextNumber = Number.parseInt(lastNumber, 10) + 1

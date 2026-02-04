@@ -37,6 +37,11 @@ const RESOURCE_DESCRIPTIONS: Record<Resource, string> = {
   organization: "Organization management",
   member: "Organization membership",
   ac: "Access control configuration",
+  product: "Product catalog and inventory items",
+  stock: "Stock levels and adjustments",
+  sale: "Sales transactions",
+  payment: "Payment processing",
+  report: "Reports and analytics",
 }
 
 function ResourceCard({

@@ -142,10 +142,10 @@ function IncomingPage() {
       queryClient.invalidateQueries({ queryKey: ["products"] })
       queryClient.invalidateQueries({ queryKey: ["inventory"] })
       setIsDialogOpen(false)
-      toast.success("Barang masuk berhasil dicatat")
+      toast.add({ title: "Barang masuk berhasil dicatat", type: "success" })
     },
     onError: () => {
-      toast.error("Gagal mencatat barang masuk")
+      toast.add({ title: "Gagal mencatat barang masuk", type: "error" })
     },
   })
 

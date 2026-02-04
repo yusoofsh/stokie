@@ -34,7 +34,7 @@ export type ProductInput = z.infer<typeof productSchema>
 export const stockTransactionSchema = z.object({
   productId: z.string().min(1, "Pilih produk"),
   type: z.enum(["in", "out"], {
-    required_error: "Pilih tipe transaksi",
+    message: "Pilih tipe transaksi",
   }),
   quantity: z.number().int().positive("Jumlah harus lebih dari 0"),
   unitPrice: z.number().int().positive("Harga harus positif").optional(),
