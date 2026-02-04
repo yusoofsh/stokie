@@ -1,0 +1,9 @@
+[submodule "refs/design"]
+	path = refs/design
+	url = https://github.com/arhamkhnz/next-shadcn-admin-dashboard.git
+[submodule "refs/logic"]
+	path = refs/logic
+	url = https://github.com/aliallaoua/better-auth.git
+[submodule "refs/table"]
+	path = refs/table
+	url = https://github.com/sadmann7/tablecn.git
