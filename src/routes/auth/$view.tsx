@@ -34,8 +34,10 @@ function AuthView() {
             <Link to="/">
               <Logo className="size-10" />
             </Link>
-            <h1 className="font-medium text-2xl">Scaffoe</h1>
-            <p className="text-sm">Design. Build. Launch. Repeat.</p>
+            <h1 className="font-medium text-2xl">
+              {import.meta.env.VITE_APP_TITLE || "Stokie"}
+            </h1>
+            <p className="text-sm">Kelola stok dengan mudah.</p>
           </div>
 
           <div className="absolute bottom-10 flex w-full justify-between px-10">
@@ -119,7 +121,10 @@ function AuthView() {
           </div>
 
           <div className="absolute bottom-5 flex w-full justify-between px-10">
-            <div className="text-sm">© {new Date().getFullYear()} Scaffoe</div>
+            <div className="text-sm">
+              © {new Date().getFullYear()}{" "}
+              {import.meta.env.VITE_APP_TITLE || "Stokie"}
+            </div>
             <div className="flex items-center gap-1 text-sm">
               <Globe className="size-4 text-muted-foreground" />
               ENG

@@ -13,7 +13,19 @@ import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as AuthViewRouteImport } from './routes/auth/$view'
+import { Route as DashboardSalesRouteRouteImport } from './routes/dashboard/sales/route'
+import { Route as DashboardPaymentsRouteRouteImport } from './routes/dashboard/payments/route'
+import { Route as DashboardInventoryRouteRouteImport } from './routes/dashboard/inventory/route'
 import { Route as DashboardAdminRouteRouteImport } from './routes/dashboard/admin/route'
+import { Route as DashboardSalesIndexRouteImport } from './routes/dashboard/sales/index'
+import { Route as DashboardInventoryIndexRouteImport } from './routes/dashboard/inventory/index'
+import { Route as DashboardSalesNewRouteImport } from './routes/dashboard/sales/new'
+import { Route as DashboardSalesIdRouteImport } from './routes/dashboard/sales/$id'
+import { Route as DashboardPaymentsUnpaidRouteImport } from './routes/dashboard/payments/unpaid'
+import { Route as DashboardPaymentsPaidRouteImport } from './routes/dashboard/payments/paid'
+import { Route as DashboardInventoryProductsRouteImport } from './routes/dashboard/inventory/products'
+import { Route as DashboardInventoryOutgoingRouteImport } from './routes/dashboard/inventory/outgoing'
+import { Route as DashboardInventoryIncomingRouteImport } from './routes/dashboard/inventory/incoming'
 import { Route as DashboardAdminUsersRouteImport } from './routes/dashboard/admin/users'
 import { Route as DashboardAdminRolesRouteImport } from './routes/dashboard/admin/roles'
 import { Route as DashboardAdminPermissionsRouteImport } from './routes/dashboard/admin/permissions'
@@ -40,11 +52,74 @@ const AuthViewRoute = AuthViewRouteImport.update({
   path: '/auth/$view',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSalesRouteRoute = DashboardSalesRouteRouteImport.update({
+  id: '/sales',
+  path: '/sales',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardPaymentsRouteRoute = DashboardPaymentsRouteRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardInventoryRouteRoute = DashboardInventoryRouteRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardAdminRouteRoute = DashboardAdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const DashboardSalesIndexRoute = DashboardSalesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardSalesRouteRoute,
+} as any)
+const DashboardInventoryIndexRoute = DashboardInventoryIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardInventoryRouteRoute,
+} as any)
+const DashboardSalesNewRoute = DashboardSalesNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => DashboardSalesRouteRoute,
+} as any)
+const DashboardSalesIdRoute = DashboardSalesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => DashboardSalesRouteRoute,
+} as any)
+const DashboardPaymentsUnpaidRoute = DashboardPaymentsUnpaidRouteImport.update({
+  id: '/unpaid',
+  path: '/unpaid',
+  getParentRoute: () => DashboardPaymentsRouteRoute,
+} as any)
+const DashboardPaymentsPaidRoute = DashboardPaymentsPaidRouteImport.update({
+  id: '/paid',
+  path: '/paid',
+  getParentRoute: () => DashboardPaymentsRouteRoute,
+} as any)
+const DashboardInventoryProductsRoute =
+  DashboardInventoryProductsRouteImport.update({
+    id: '/products',
+    path: '/products',
+    getParentRoute: () => DashboardInventoryRouteRoute,
+  } as any)
+const DashboardInventoryOutgoingRoute =
+  DashboardInventoryOutgoingRouteImport.update({
+    id: '/outgoing',
+    path: '/outgoing',
+    getParentRoute: () => DashboardInventoryRouteRoute,
+  } as any)
+const DashboardInventoryIncomingRoute =
+  DashboardInventoryIncomingRouteImport.update({
+    id: '/incoming',
+    path: '/incoming',
+    getParentRoute: () => DashboardInventoryRouteRoute,
+  } as any)
 const DashboardAdminUsersRoute = DashboardAdminUsersRouteImport.update({
   id: '/users',
   path: '/users',
@@ -76,6 +151,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/admin': typeof DashboardAdminRouteRouteWithChildren
+  '/dashboard/inventory': typeof DashboardInventoryRouteRouteWithChildren
+  '/dashboard/payments': typeof DashboardPaymentsRouteRouteWithChildren
+  '/dashboard/sales': typeof DashboardSalesRouteRouteWithChildren
   '/auth/$view': typeof AuthViewRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -83,10 +161,20 @@ export interface FileRoutesByFullPath {
   '/dashboard/admin/permissions': typeof DashboardAdminPermissionsRoute
   '/dashboard/admin/roles': typeof DashboardAdminRolesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
+  '/dashboard/inventory/incoming': typeof DashboardInventoryIncomingRoute
+  '/dashboard/inventory/outgoing': typeof DashboardInventoryOutgoingRoute
+  '/dashboard/inventory/products': typeof DashboardInventoryProductsRoute
+  '/dashboard/payments/paid': typeof DashboardPaymentsPaidRoute
+  '/dashboard/payments/unpaid': typeof DashboardPaymentsUnpaidRoute
+  '/dashboard/sales/$id': typeof DashboardSalesIdRoute
+  '/dashboard/sales/new': typeof DashboardSalesNewRoute
+  '/dashboard/inventory/': typeof DashboardInventoryIndexRoute
+  '/dashboard/sales/': typeof DashboardSalesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard/admin': typeof DashboardAdminRouteRouteWithChildren
+  '/dashboard/payments': typeof DashboardPaymentsRouteRouteWithChildren
   '/auth/$view': typeof AuthViewRoute
   '/dashboard': typeof DashboardIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -94,12 +182,24 @@ export interface FileRoutesByTo {
   '/dashboard/admin/permissions': typeof DashboardAdminPermissionsRoute
   '/dashboard/admin/roles': typeof DashboardAdminRolesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
+  '/dashboard/inventory/incoming': typeof DashboardInventoryIncomingRoute
+  '/dashboard/inventory/outgoing': typeof DashboardInventoryOutgoingRoute
+  '/dashboard/inventory/products': typeof DashboardInventoryProductsRoute
+  '/dashboard/payments/paid': typeof DashboardPaymentsPaidRoute
+  '/dashboard/payments/unpaid': typeof DashboardPaymentsUnpaidRoute
+  '/dashboard/sales/$id': typeof DashboardSalesIdRoute
+  '/dashboard/sales/new': typeof DashboardSalesNewRoute
+  '/dashboard/inventory': typeof DashboardInventoryIndexRoute
+  '/dashboard/sales': typeof DashboardSalesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/dashboard/admin': typeof DashboardAdminRouteRouteWithChildren
+  '/dashboard/inventory': typeof DashboardInventoryRouteRouteWithChildren
+  '/dashboard/payments': typeof DashboardPaymentsRouteRouteWithChildren
+  '/dashboard/sales': typeof DashboardSalesRouteRouteWithChildren
   '/auth/$view': typeof AuthViewRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
@@ -107,6 +207,15 @@ export interface FileRoutesById {
   '/dashboard/admin/permissions': typeof DashboardAdminPermissionsRoute
   '/dashboard/admin/roles': typeof DashboardAdminRolesRoute
   '/dashboard/admin/users': typeof DashboardAdminUsersRoute
+  '/dashboard/inventory/incoming': typeof DashboardInventoryIncomingRoute
+  '/dashboard/inventory/outgoing': typeof DashboardInventoryOutgoingRoute
+  '/dashboard/inventory/products': typeof DashboardInventoryProductsRoute
+  '/dashboard/payments/paid': typeof DashboardPaymentsPaidRoute
+  '/dashboard/payments/unpaid': typeof DashboardPaymentsUnpaidRoute
+  '/dashboard/sales/$id': typeof DashboardSalesIdRoute
+  '/dashboard/sales/new': typeof DashboardSalesNewRoute
+  '/dashboard/inventory/': typeof DashboardInventoryIndexRoute
+  '/dashboard/sales/': typeof DashboardSalesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -114,6 +223,9 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/dashboard/admin'
+    | '/dashboard/inventory'
+    | '/dashboard/payments'
+    | '/dashboard/sales'
     | '/auth/$view'
     | '/dashboard/'
     | '/api/auth/$'
@@ -121,10 +233,20 @@ export interface FileRouteTypes {
     | '/dashboard/admin/permissions'
     | '/dashboard/admin/roles'
     | '/dashboard/admin/users'
+    | '/dashboard/inventory/incoming'
+    | '/dashboard/inventory/outgoing'
+    | '/dashboard/inventory/products'
+    | '/dashboard/payments/paid'
+    | '/dashboard/payments/unpaid'
+    | '/dashboard/sales/$id'
+    | '/dashboard/sales/new'
+    | '/dashboard/inventory/'
+    | '/dashboard/sales/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard/admin'
+    | '/dashboard/payments'
     | '/auth/$view'
     | '/dashboard'
     | '/api/auth/$'
@@ -132,11 +254,23 @@ export interface FileRouteTypes {
     | '/dashboard/admin/permissions'
     | '/dashboard/admin/roles'
     | '/dashboard/admin/users'
+    | '/dashboard/inventory/incoming'
+    | '/dashboard/inventory/outgoing'
+    | '/dashboard/inventory/products'
+    | '/dashboard/payments/paid'
+    | '/dashboard/payments/unpaid'
+    | '/dashboard/sales/$id'
+    | '/dashboard/sales/new'
+    | '/dashboard/inventory'
+    | '/dashboard/sales'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
     | '/dashboard/admin'
+    | '/dashboard/inventory'
+    | '/dashboard/payments'
+    | '/dashboard/sales'
     | '/auth/$view'
     | '/dashboard/'
     | '/api/auth/$'
@@ -144,6 +278,15 @@ export interface FileRouteTypes {
     | '/dashboard/admin/permissions'
     | '/dashboard/admin/roles'
     | '/dashboard/admin/users'
+    | '/dashboard/inventory/incoming'
+    | '/dashboard/inventory/outgoing'
+    | '/dashboard/inventory/products'
+    | '/dashboard/payments/paid'
+    | '/dashboard/payments/unpaid'
+    | '/dashboard/sales/$id'
+    | '/dashboard/sales/new'
+    | '/dashboard/inventory/'
+    | '/dashboard/sales/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -183,12 +326,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthViewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/sales': {
+      id: '/dashboard/sales'
+      path: '/sales'
+      fullPath: '/dashboard/sales'
+      preLoaderRoute: typeof DashboardSalesRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/payments': {
+      id: '/dashboard/payments'
+      path: '/payments'
+      fullPath: '/dashboard/payments'
+      preLoaderRoute: typeof DashboardPaymentsRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/inventory': {
+      id: '/dashboard/inventory'
+      path: '/inventory'
+      fullPath: '/dashboard/inventory'
+      preLoaderRoute: typeof DashboardInventoryRouteRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
     '/dashboard/admin': {
       id: '/dashboard/admin'
       path: '/admin'
       fullPath: '/dashboard/admin'
       preLoaderRoute: typeof DashboardAdminRouteRouteImport
       parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/sales/': {
+      id: '/dashboard/sales/'
+      path: '/'
+      fullPath: '/dashboard/sales/'
+      preLoaderRoute: typeof DashboardSalesIndexRouteImport
+      parentRoute: typeof DashboardSalesRouteRoute
+    }
+    '/dashboard/inventory/': {
+      id: '/dashboard/inventory/'
+      path: '/'
+      fullPath: '/dashboard/inventory/'
+      preLoaderRoute: typeof DashboardInventoryIndexRouteImport
+      parentRoute: typeof DashboardInventoryRouteRoute
+    }
+    '/dashboard/sales/new': {
+      id: '/dashboard/sales/new'
+      path: '/new'
+      fullPath: '/dashboard/sales/new'
+      preLoaderRoute: typeof DashboardSalesNewRouteImport
+      parentRoute: typeof DashboardSalesRouteRoute
+    }
+    '/dashboard/sales/$id': {
+      id: '/dashboard/sales/$id'
+      path: '/$id'
+      fullPath: '/dashboard/sales/$id'
+      preLoaderRoute: typeof DashboardSalesIdRouteImport
+      parentRoute: typeof DashboardSalesRouteRoute
+    }
+    '/dashboard/payments/unpaid': {
+      id: '/dashboard/payments/unpaid'
+      path: '/unpaid'
+      fullPath: '/dashboard/payments/unpaid'
+      preLoaderRoute: typeof DashboardPaymentsUnpaidRouteImport
+      parentRoute: typeof DashboardPaymentsRouteRoute
+    }
+    '/dashboard/payments/paid': {
+      id: '/dashboard/payments/paid'
+      path: '/paid'
+      fullPath: '/dashboard/payments/paid'
+      preLoaderRoute: typeof DashboardPaymentsPaidRouteImport
+      parentRoute: typeof DashboardPaymentsRouteRoute
+    }
+    '/dashboard/inventory/products': {
+      id: '/dashboard/inventory/products'
+      path: '/products'
+      fullPath: '/dashboard/inventory/products'
+      preLoaderRoute: typeof DashboardInventoryProductsRouteImport
+      parentRoute: typeof DashboardInventoryRouteRoute
+    }
+    '/dashboard/inventory/outgoing': {
+      id: '/dashboard/inventory/outgoing'
+      path: '/outgoing'
+      fullPath: '/dashboard/inventory/outgoing'
+      preLoaderRoute: typeof DashboardInventoryOutgoingRouteImport
+      parentRoute: typeof DashboardInventoryRouteRoute
+    }
+    '/dashboard/inventory/incoming': {
+      id: '/dashboard/inventory/incoming'
+      path: '/incoming'
+      fullPath: '/dashboard/inventory/incoming'
+      preLoaderRoute: typeof DashboardInventoryIncomingRouteImport
+      parentRoute: typeof DashboardInventoryRouteRoute
     }
     '/dashboard/admin/users': {
       id: '/dashboard/admin/users'
@@ -245,13 +472,70 @@ const DashboardAdminRouteRouteChildren: DashboardAdminRouteRouteChildren = {
 const DashboardAdminRouteRouteWithChildren =
   DashboardAdminRouteRoute._addFileChildren(DashboardAdminRouteRouteChildren)
 
+interface DashboardInventoryRouteRouteChildren {
+  DashboardInventoryIncomingRoute: typeof DashboardInventoryIncomingRoute
+  DashboardInventoryOutgoingRoute: typeof DashboardInventoryOutgoingRoute
+  DashboardInventoryProductsRoute: typeof DashboardInventoryProductsRoute
+  DashboardInventoryIndexRoute: typeof DashboardInventoryIndexRoute
+}
+
+const DashboardInventoryRouteRouteChildren: DashboardInventoryRouteRouteChildren =
+  {
+    DashboardInventoryIncomingRoute: DashboardInventoryIncomingRoute,
+    DashboardInventoryOutgoingRoute: DashboardInventoryOutgoingRoute,
+    DashboardInventoryProductsRoute: DashboardInventoryProductsRoute,
+    DashboardInventoryIndexRoute: DashboardInventoryIndexRoute,
+  }
+
+const DashboardInventoryRouteRouteWithChildren =
+  DashboardInventoryRouteRoute._addFileChildren(
+    DashboardInventoryRouteRouteChildren,
+  )
+
+interface DashboardPaymentsRouteRouteChildren {
+  DashboardPaymentsPaidRoute: typeof DashboardPaymentsPaidRoute
+  DashboardPaymentsUnpaidRoute: typeof DashboardPaymentsUnpaidRoute
+}
+
+const DashboardPaymentsRouteRouteChildren: DashboardPaymentsRouteRouteChildren =
+  {
+    DashboardPaymentsPaidRoute: DashboardPaymentsPaidRoute,
+    DashboardPaymentsUnpaidRoute: DashboardPaymentsUnpaidRoute,
+  }
+
+const DashboardPaymentsRouteRouteWithChildren =
+  DashboardPaymentsRouteRoute._addFileChildren(
+    DashboardPaymentsRouteRouteChildren,
+  )
+
+interface DashboardSalesRouteRouteChildren {
+  DashboardSalesIdRoute: typeof DashboardSalesIdRoute
+  DashboardSalesNewRoute: typeof DashboardSalesNewRoute
+  DashboardSalesIndexRoute: typeof DashboardSalesIndexRoute
+}
+
+const DashboardSalesRouteRouteChildren: DashboardSalesRouteRouteChildren = {
+  DashboardSalesIdRoute: DashboardSalesIdRoute,
+  DashboardSalesNewRoute: DashboardSalesNewRoute,
+  DashboardSalesIndexRoute: DashboardSalesIndexRoute,
+}
+
+const DashboardSalesRouteRouteWithChildren =
+  DashboardSalesRouteRoute._addFileChildren(DashboardSalesRouteRouteChildren)
+
 interface DashboardRouteRouteChildren {
   DashboardAdminRouteRoute: typeof DashboardAdminRouteRouteWithChildren
+  DashboardInventoryRouteRoute: typeof DashboardInventoryRouteRouteWithChildren
+  DashboardPaymentsRouteRoute: typeof DashboardPaymentsRouteRouteWithChildren
+  DashboardSalesRouteRoute: typeof DashboardSalesRouteRouteWithChildren
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardAdminRouteRoute: DashboardAdminRouteRouteWithChildren,
+  DashboardInventoryRouteRoute: DashboardInventoryRouteRouteWithChildren,
+  DashboardPaymentsRouteRoute: DashboardPaymentsRouteRouteWithChildren,
+  DashboardSalesRouteRoute: DashboardSalesRouteRouteWithChildren,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 

@@ -29,7 +29,7 @@ export const Route = createRootRouteWithContext<RootRouteContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Scaffoe",
+        title: import.meta.env.VITE_APP_TITLE || "Stokie",
       },
     ],
     links: [

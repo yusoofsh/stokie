@@ -1,5 +1,16 @@
 import type { LucideIcon } from "lucide-react"
-import { FileText, LayoutDashboard, Users } from "lucide-react"
+import {
+  Box,
+  CheckCircle,
+  Clock,
+  FileText,
+  LayoutDashboard,
+  Package,
+  PackageMinus,
+  PackagePlus,
+  ShoppingCart,
+  Users,
+} from "lucide-react"
 
 // Placeholder audit logs
 export const auditLogs = [
@@ -59,7 +70,7 @@ export interface NavGroup {
 export const sidebarMenu: NavGroup[] = [
   {
     id: "main",
-    label: "Main",
+    label: "Utama",
     items: [
       {
         title: "Dashboard",
@@ -69,11 +80,64 @@ export const sidebarMenu: NavGroup[] = [
     ],
   },
   {
-    id: "admin",
-    label: "Administration",
+    id: "inventory",
+    label: "Inventori",
     items: [
       {
-        title: "Users",
+        title: "Stok",
+        url: "/dashboard/inventory",
+        icon: Package,
+      },
+      {
+        title: "Produk",
+        url: "/dashboard/inventory/products",
+        icon: Box,
+      },
+      {
+        title: "Barang Masuk",
+        url: "/dashboard/inventory/incoming",
+        icon: PackagePlus,
+      },
+      {
+        title: "Barang Keluar",
+        url: "/dashboard/inventory/outgoing",
+        icon: PackageMinus,
+      },
+    ],
+  },
+  {
+    id: "sales",
+    label: "Penjualan",
+    items: [
+      {
+        title: "Penjualan",
+        url: "/dashboard/sales",
+        icon: ShoppingCart,
+      },
+    ],
+  },
+  {
+    id: "payments",
+    label: "Pembayaran",
+    items: [
+      {
+        title: "Sudah Bayar",
+        url: "/dashboard/payments/paid",
+        icon: CheckCircle,
+      },
+      {
+        title: "Belum Bayar",
+        url: "/dashboard/payments/unpaid",
+        icon: Clock,
+      },
+    ],
+  },
+  {
+    id: "admin",
+    label: "Administrasi",
+    items: [
+      {
+        title: "Pengguna",
         url: "/dashboard/admin/users",
         icon: Users,
       },

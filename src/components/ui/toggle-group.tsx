@@ -24,6 +24,16 @@ function ToggleGroup({
   children,
   ...props
 }: ToggleGroupPrimitive.Props & VariantProps<typeof toggleVariants>) {
+  const getOrientationClasses = () => {
+    if (variant === "default") {
+      return "gap-0.5"
+    }
+    if (orientation === "horizontal") {
+      return "*:not-first:rounded-s-none *:not-last:rounded-e-none *:not-first:border-s-0 *:not-last:border-e-0 *:not-first:before:-start-[0.5px] *:not-last:before:-end-[0.5px] *:not-first:before:rounded-s-none *:not-last:before:rounded-e-none"
+    }
+    return "flex-col *:not-first:rounded-t-none *:not-last:rounded-b-none *:not-first:border-t-0 *:not-last:border-b-0 *:not-first:before:-top-[0.5px] *:not-last:before:-bottom-[0.5px] *:not-last:before:hidden *:not-first:before:rounded-t-none *:not-last:before:rounded-b-none dark:*:last:before:hidden dark:*:first:before:block"
+  }
+
   return (
     <ToggleGroupPrimitive
       className={cn(
@@ -31,11 +41,7 @@ function ToggleGroup({
         orientation === "horizontal"
           ? "*:pointer-coarse:after:min-w-auto"
           : "*:pointer-coarse:after:min-h-auto",
-        variant === "default"
-          ? "gap-0.5"
-          : orientation === "horizontal"
-            ? "*:not-first:rounded-s-none *:not-last:rounded-e-none *:not-first:border-s-0 *:not-last:border-e-0 *:not-first:before:-start-[0.5px] *:not-last:before:-end-[0.5px] *:not-first:before:rounded-s-none *:not-last:before:rounded-e-none"
-            : "flex-col *:not-first:rounded-t-none *:not-last:rounded-b-none *:not-first:border-t-0 *:not-last:border-b-0 *:not-first:before:-top-[0.5px] *:not-last:before:-bottom-[0.5px] *:not-last:before:hidden *:not-first:before:rounded-t-none *:not-last:before:rounded-b-none dark:*:last:before:hidden dark:*:first:before:block",
+        getOrientationClasses(),
         className
       )}
       data-size={size}

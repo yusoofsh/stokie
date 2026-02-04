@@ -31,7 +31,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       </div>
                       <div className="grid flex-1 text-left text-sm leading-tight">
                         <span className="truncate font-semibold text-base">
-                          Scaffoe
+                          {import.meta.env.VITE_APP_TITLE || "Stokie"}
                         </span>
                       </div>
                     </Link>

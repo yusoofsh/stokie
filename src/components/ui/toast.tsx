@@ -49,6 +49,17 @@ function Toasts({ position = "bottom-right" }: { position: ToastPosition }) {
   const { toasts } = Toast.useToastManager()
   const isTop = position.startsWith("top")
 
+  const getSwipeDirection = (): ("up" | "down" | "left" | "right")[] => {
+    const verticalDirection = isTop ? "up" : "down"
+    if (position.includes("center")) {
+      return [verticalDirection]
+    }
+    if (position.includes("left")) {
+      return ["left", verticalDirection]
+    }
+    return ["right", verticalDirection]
+  }
+
   return (
     <Toast.Portal data-slot="toast-portal">
       <Toast.Viewport
@@ -115,13 +126,7 @@ function Toasts({ position = "bottom-right" }: { position: ToastPosition }) {
               )}
               data-position={position}
               key={toast.id}
-              swipeDirection={
-                position.includes("center")
-                  ? [isTop ? "up" : "down"]
-                  : position.includes("left")
-                    ? ["left", isTop ? "up" : "down"]
-                    : ["right", isTop ? "up" : "down"]
-              }
+              swipeDirection={getSwipeDirection()}
               toast={toast}
             >
               <Toast.Content className="pointer-events-auto flex items-center justify-between gap-1.5 overflow-hidden px-3.5 py-3 text-sm transition-opacity duration-250 data-behind:pointer-events-none data-behind:opacity-0 data-expanded:opacity-100">

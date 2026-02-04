@@ -18,12 +18,11 @@ function App() {
             Just released v1.0.0 <ArrowUpRight className="ml-1 size-4" />
           </Badge>
           <h1 className="mt-6 max-w-[17ch] font-semibold text-4xl leading-[1.2] tracking-[-0.035em] md:text-5xl lg:text-[2.75rem] xl:text-[3.25rem]">
-            Welcome to Scaffoe
+            Welcome to {import.meta.env.VITE_APP_TITLE || "Stokie"}
           </h1>
           <p className="mt-6 max-w-[60ch] text-foreground/80 text-lg">
-            Build modern dashboards faster with Scaffoe, a powerful starter
-            template designed for developers. Get production-ready components,
-            stunning UI blocks, and best practices out of the box.
+            Kelola stok barang dengan mudah. Catat barang masuk, keluar,
+            penjualan, dan pembayaran dalam satu platform yang terintegrasi.
           </p>
           <div className="mt-12 flex items-center gap-4">
             <Button

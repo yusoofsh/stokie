@@ -10,6 +10,14 @@ export const statement = {
   member: ["read", "invite", "remove", "update-role"],
   // For dynamic role management
   ac: ["read", "create", "update", "delete"],
+  // Inventory resources
+  product: ["read", "create", "update", "delete"],
+  stock: ["read", "create", "adjust"],
+  // Sales resources
+  sale: ["read", "create", "update", "delete", "void"],
+  payment: ["read", "create", "refund"],
+  // Reporting
+  report: ["read", "export"],
 } as const
 
 export const ac = createAccessControl(statement)
@@ -19,12 +27,23 @@ export const systemRoles = {
   user: ac.newRole({
     user: ["read"],
     organization: ["read"],
+    // Inventory: read-only access
+    product: ["read"],
+    stock: ["read"],
+    sale: ["read"],
+    payment: ["read"],
   }),
   editor: ac.newRole({
     user: ["read", "update"],
     organization: ["read", "update"],
     member: ["read", "invite"],
     audit: ["read"],
+    // Inventory: full operational access
+    product: ["read", "create", "update"],
+    stock: ["read", "create", "adjust"],
+    sale: ["read", "create", "update"],
+    payment: ["read", "create"],
+    report: ["read"],
   }),
   admin: ac.newRole({
     user: ["read", "create", "update", "delete", "ban", "impersonate"],
@@ -33,6 +52,12 @@ export const systemRoles = {
     audit: ["read", "export"],
     role: ["read", "create", "update", "delete", "assign"],
     ac: ["read", "create", "update", "delete"],
+    // Inventory: full access including delete and void
+    product: ["read", "create", "update", "delete"],
+    stock: ["read", "create", "adjust"],
+    sale: ["read", "create", "update", "delete", "void"],
+    payment: ["read", "create", "refund"],
+    report: ["read", "export"],
   }),
 }
 

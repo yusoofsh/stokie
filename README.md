@@ -1,54 +1,132 @@
-Welcome to your new TanStack app!
+# Stokie - Stock Management Platform
 
-# Getting Started
+Platform manajemen stok dan inventori untuk bisnis Indonesia. Kelola barang masuk, keluar, penjualan, dan pembayaran dalam satu aplikasi terintegrasi.
 
-To run this application:
+## Fitur
+
+- **📦 Manajemen Stok** - Pantau stok barang real-time dengan peringatan stok menipis
+- **📥 Barang Masuk** - Catat penerimaan barang dengan referensi PO/Invoice
+- **📤 Barang Keluar** - Catat pengeluaran barang dengan validasi stok
+- **🛒 Penjualan** - Buat transaksi penjualan dengan invoice otomatis (INV-YYYY-NNNN)
+- **💰 Pembayaran** - Kelola pembayaran dengan status otomatis (lunas/sebagian/belum bayar)
+- **📊 Harga Barang** - Atur harga dasar dan harga jual per produk
+- **🔐 Autentikasi** - Sistem login dengan Better Auth dan role-based access
+
+## Tech Stack
+
+- **Framework**: TanStack Start (React 19 + Vite) dengan SSR
+- **Routing**: TanStack Router (file-based routing)
+- **State**: TanStack Query untuk data fetching
+- **Forms**: TanStack Form dengan validasi Zod
+- **Auth**: Better Auth dengan plugin admin, organization, multiSession
+- **Database**: Drizzle ORM + PGlite (PostgreSQL lokal)
+- **Styling**: Tailwind CSS dengan komponen Shadcn-style
+- **Currency**: Format Rupiah (Rp) dengan penyimpanan cents
+
+## Getting Started
+
+### Prerequisites
+
+- [Bun](https://bun.sh) v1.0+
+- Node.js 18+ (untuk kompatibilitas)
+
+### Installation
 
 ```bash
+# Clone repository
+git clone https://github.com/yusoofsh/stokie.git
+cd stokie
+
+# Install dependencies
 bun install
-bun --bun run start
+
+# Setup environment
+cp .env.example .env
+# Edit .env dengan nilai yang sesuai:
+# APP_URL=http://localhost:3000
+# AUTH_SECRET=your-secret-key
+# VITE_APP_TITLE=Stokie
+
+# Generate dan jalankan migrasi database
+bun db:generate
+bun db:migrate
+
+# Jalankan development server
+bun dev
 ```
 
-# Building For Production
+### Environment Variables
 
-To build this application for production:
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `APP_URL` | Base URL aplikasi | Ya |
+| `AUTH_SECRET` | Secret key untuk auth | Ya |
+| `VITE_APP_TITLE` | Nama aplikasi di UI | Tidak (default: Stokie) |
+
+## Scripts
 
 ```bash
-bun --bun run build
+bun dev          # Jalankan development server
+bun build        # Build untuk production
+bun preview      # Preview production build
+bun test         # Jalankan tests (Vitest)
+bun check        # Lint dan format (Ultracite)
+
+# Database
+bun db:generate  # Generate migrasi dari schema
+bun db:migrate   # Jalankan migrasi
+bun db:studio    # Buka Drizzle Studio
+bun db:prepare   # Generate + migrate
 ```
 
-## Testing
+## Project Structure
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
-
-```bash
-bun --bun run test
+```
+stokie/
+├── data/
+│   ├── schema/         # Drizzle schema (auth, inventory)
+│   ├── migrations/     # SQL migrations
+│   └── drizzle.config.ts
+├── src/
+│   ├── components/     # React components
+│   │   ├── ui/         # Shadcn-style primitives
+│   │   ├── dashboard/  # Dashboard layout
+│   │   └── auth/       # Auth forms
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/
+│   │   ├── auth/       # Better Auth config
+│   │   ├── inventory/  # Inventory utilities
+│   │   ├── currency.ts # Rupiah formatting
+│   │   └── db.ts       # Drizzle client
+│   └── routes/
+│       ├── dashboard/
+│       │   ├── inventory/  # Stok, Produk, Barang Masuk/Keluar
+│       │   ├── sales/      # Penjualan
+│       │   └── payments/   # Sudah/Belum Bayar
+│       └── auth/           # Sign in/up
+└── public/             # Static assets
 ```
 
-## Styling
+## Database Schema
 
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+### Inventory Tables
 
+- **products** - Daftar produk (SKU, nama, harga, stok)
+- **stock_transactions** - Riwayat barang masuk/keluar
+- **sales** - Transaksi penjualan dengan status pembayaran
+- **sale_items** - Detail item per penjualan
+- **payments** - Riwayat pembayaran per penjualan
 
-## Linting & Formatting
+### Currency Handling
 
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
+Semua harga disimpan dalam cents (integer) untuk menghindari masalah floating point:
+- `Rp 10.000` disimpan sebagai `1000000` cents
+- Gunakan `formatRupiah(cents)` untuk display
+- Gunakan `rupiahToCents(rupiah)` untuk input
 
+## License
 
-```bash
-bun --bun run lint
-bun --bun run format
-bun --bun run check
-```
-
-
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
-```bash
-pnpm dlx shadcn@latest add button
-```
+MIT
 
 ## Routing
 This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.

@@ -8,7 +8,7 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <title>Scaffoe Logo</title>
+      <title>Stokie Logo</title>
       <circle cx="12" cy="12" r="10" />
     </svg>
   )
