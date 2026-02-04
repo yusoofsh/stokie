@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { createFileRoute, Link } from "@tanstack/react-router"
+import { createFileRoute } from "@tanstack/react-router"
 import { createServerFn } from "@tanstack/react-start"
 import { products, stockTransactions } from "data/schema/inventory"
 import { desc, eq, sql } from "drizzle-orm"
-import { ArrowLeft, Plus } from "lucide-react"
+import { Plus } from "lucide-react"
 import { useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -183,13 +183,6 @@ function OutgoingPage() {
     <div className="flex flex-col gap-4 md:gap-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button
-            render={<Link to="/dashboard/inventory" />}
-            size="sm"
-            variant="ghost"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </Button>
           <div>
             <h1 className="font-semibold text-2xl">Barang Keluar</h1>
             <p className="text-muted-foreground text-sm">
